@@ -22,10 +22,17 @@ pipeline {
             }
         }
         stage('deploy') {
+            input {
+                message "Select the environment to deplot to"
+                ok "Done"
+                pararmeters {
+                    choice(name: 'ENV', choices: ['dev','staging','prod'], description: '')
+                }
+            }
             steps {
                 script {
                     echo "Deploying the application..."
-                    echo "Deploying version ${params.VERSION}"
+                    echo "Deploying to ${ENV} version ${params.VERSION}"
                 }
             }
         }
