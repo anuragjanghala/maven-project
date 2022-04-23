@@ -26,13 +26,15 @@ pipeline {
                 message "Select the environment to deplot to"
                 ok "Done"
                 parameters {
-                    choice(name: 'ENV', choices: ['dev','staging','prod'], description: '')
+                    choice(name: 'ONE', choices: ['dev','staging','prod'], description: '')
+                    choice(name: 'TWO', choices: ['dev','staging','prod'], description: '')
                 }
             }
             steps {
                 script {
                     echo "Deploying the application..."
-                    echo "Deploying to ${ENV} version ${params.VERSION}"
+                    echo "Deploying to ${ONE} version ${params.VERSION}"
+                    echo "Deploying to ${TWO} version ${params.VERSION}"
                 }
             }
         }
