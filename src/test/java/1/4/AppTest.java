@@ -1,4 +1,4 @@
-package 1.4;
+package pubrecservice;
 
 import static org.junit.Assert.assertTrue;
 
