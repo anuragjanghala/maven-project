@@ -25,7 +25,7 @@ pipeline {
             input {
                 message "Select the environment to deplot to"
                 ok "Done"
-                pararmeters {
+                parameters {
                     choice(name: 'ENV', choices: ['dev','staging','prod'], description: '')
                 }
             }
