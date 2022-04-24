@@ -4,27 +4,31 @@
 
 
 pipeline {
-    agent none
+    agent any
+    tools {
+        maven 'Maven'
+    }
     stages {
-        stage('test') {
-            steps {
-                script {
-                    echo "Testing the application..."
-                    echo "Testing the branch $BRANCH_NAME"
-                }
-            }
-        }
         stage('build jar') {
             steps {
                 script {
                     buildJar()
                 }
             }
-        }        
-        stage('deploy') {
+        }
+        stage('build image') {
             steps {
                 script {
                     buildImage()
+
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                script {
+                    echo "Testing the application..."
+                    echo "Testing the branch $BRANCH_NAME"
                 }
             }
         }
