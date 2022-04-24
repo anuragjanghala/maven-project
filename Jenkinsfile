@@ -19,7 +19,7 @@ pipeline {
         stage('build image') {
             steps {
                 script {
-                    buildImage()
+                    buildImage('ajanghala/my-private-repo:3.1')
 
                 }
             }
