@@ -20,16 +20,15 @@ pipeline {
             }
         }        
         stage('deploy') {
-            when {
-                expression {
-                    BRANCH_NAME == 'main'
-                }
-            }
             steps {
                 script {
-                    echo "Deploying the application..."
+                    def dockerCmd = 'docker run -p 3080:80 -d ajanghala/my-private-repo:1.0'
+                    sshagent(['ec2-server-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@34.244.117.149 ${dockerCmd}"
+                    }
                 }
             }
+        }
         }
     }
 }
