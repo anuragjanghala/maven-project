@@ -7,6 +7,11 @@ pipeline {
     }
     stages {
         stage('increment version') {
+            when {
+                expression {
+                    BRANCH_NAME == 'jenkins-jobs'
+                }
+            }
             steps {
                 script {
                     echo 'incrementing app version...'
@@ -20,6 +25,11 @@ pipeline {
             }
         }
         stage('build app') {
+            when {
+                expression {
+                    BRANCH_NAME == 'jenkins-jobs'
+                }
+            }
             steps {
                 script {
                     echo "building the application...."
@@ -28,6 +38,11 @@ pipeline {
             }
         }
         stage('build image') {
+            when {
+                expression {
+                    BRANCH_NAME == 'jenkins-jobs'
+                }
+            }
             steps {
                 script {
                     echo "building the docker image..."
@@ -40,6 +55,11 @@ pipeline {
             }
         }
         stage('deploy') {
+            when {
+                expression {
+                    BRANCH_NAME == 'jenkins-jobs'
+                }
+            }
             steps {
                 script {
                     echo 'deploying docker image to EC2....'
@@ -56,6 +76,11 @@ pipeline {
             }
         }
         stage('commit version update') {
+            when {
+                expression {
+                    BRANCH_NAME == 'jenkins-jobs'
+                }
+            }
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
